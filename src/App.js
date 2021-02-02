@@ -1,10 +1,14 @@
+/* eslint-disable arrow-body-style */
 import React from "react";
-const App=()=>{
-  return(
-    <>
-    <h1>Welcome to React Parcel Micro App!</h1>
-    <p>Hard to get more  than this React app.</p>
-  </>
-  );
-};
+import Board from './components/Board'
+import Square from './components/Square'
+
+const App = () => {
+   return(
+     <div>
+   <h1>Tic tac Toe game</h1>
+   <Board />
+   </div>
+   );
+   };
 export default App;
