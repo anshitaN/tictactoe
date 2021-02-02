@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 import React from "react";
 import Board from './components/Board'
-import Square from './components/Square'
+// import Square from './components/Square'
 
 const App = () => {
    return(
