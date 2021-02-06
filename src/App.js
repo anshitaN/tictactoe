@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import React, {useState} from "react";
-import Board from './components/Board'
+import Board from './components/Board';
+import History from './components/History';
 import { calculateWinner } from "./helpers";
 import './styles/root.scss'
 // import Square from './components/Square'
@@ -9,7 +10,7 @@ const App = () => {
   const [history, setHistory]=useState([{board: Array(9).fill(null), isXNext:true}]);
   const [currentMove, setCurrentMove] = useState(0);
   const current=history[currentMove];
-  console.log('history',history);
+ 
     const winner=calculateWinner(current.board);
 
   const message=winner? `Winner is ${winner}`: 
@@ -34,11 +35,15 @@ return square;
     // to set the next value either x or O acc to prev value
     setCurrentMove(prev=>prev+1);
   };
+  const moveTo=(move)=>{
+    setCurrentMove(move);
+  };
    return(
      <div>
    <h1>Tic tac Toe game</h1>
    <h2>{message}</h2>
    <Board board={current.board} handleSquareClick={handleSquareClick} />
+   <History history={history} moveTo={moveTo} currrentMove={currentMove}/>
    </div>
    );
    };
