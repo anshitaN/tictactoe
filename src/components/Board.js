@@ -1,26 +1,9 @@
 /* eslint-disable arrow-body-style */
-import React, {useState} from 'react'
+import React from 'react'
 import Square from './Square'
 // eslint-disable-next-line arrow-body-style
-const Board = () => {
-  const [board, setBoard]=useState(Array(9).fill(null));
-  const[isXNext, setIsXNext]=useState(false);
-  const handleSquareClick=(position)=>{
-    /*Not edit the X or O again if selected*/
-if(board[position]){
-  return;
-}
-//to select X or O
-    setBoard((prev)=>{
-      return prev.map((square, pos) =>{
-if(pos === position){
-  return isXNext? 'X':'O';
-}
-return square;
-      })
-    })
-    setIsXNext((prev)=>!prev);//to tap next either X or O according to pos
-  };
+const Board = ({board, handleSquareClick}) => {
+
 
 const renderSquare=position=>{
   return( 
