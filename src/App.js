@@ -6,13 +6,15 @@ import StatusMessage from './components/StatusMessage';
 import { calculateWinner } from "./helpers";
 import './styles/root.scss'
 // import Square from './components/Square'
-
+const NEW_GAME=[
+  {board: Array(9).fill(null), isXNext:true},
+];
 const App = () => {
   const [history, setHistory]=useState([{board: Array(9).fill(null), isXNext:true}]);
   const [currentMove, setCurrentMove] = useState(0);
   const current=history[currentMove];
  
-    const winner=calculateWinner(current.board);
+    const {winner, winningSquares}=calculateWinner(current.board);
 
   // const message=winner? `Winner is ${winner}`: 
   // `Next player is ${current.isXNext ? 'X':'O'}`
@@ -39,11 +41,16 @@ return square;
   const moveTo=(move)=>{
     setCurrentMove(move);
   };
+  const onNewGame=()=>{
+    setHistory(NEW_GAME)
+    setCurrentMove(0)
+  }
    return(
      <div>
    <h1>Tic tac Toe game</h1>
    <StatusMessage winner={winner} current={current}/>
-   <Board board={current.board} handleSquareClick={handleSquareClick} />
+   <Board board={current.board} handleSquareClick={handleSquareClick} winningSquares={winningSquares} />
+   <button type="button" onClick={onNewGame}>Start New Game</button>
    <History history={history} moveTo={moveTo} currrentMove={currentMove}/>
    </div>
    );
